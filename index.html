@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+<div class="radio">
 <img src="./img/final_radio.png" usemap="#image-map" class="background">
+<div class="music-info">
+  <div id="title">
+    <span>Song Title</span>
+    <span>Song Title</span>
+  </div>
+</div>
+</div>
+<div class="duration-info">
+  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+</div>
 
 <map name="image-map">
   <area alt="Previous" title="Previous" coords="598,662,35" shape="circle" tabindex="0" onclick="changeSong(-1)">
@@ -17,14 +27,20 @@
 </map>
 
 <audio id="audio"></audio>
+<div class="progress-container">
+  <input type="range" id="progress" value="0" min="0" max="100">
+</div>
 
-<div class="music-info">
-  <div id="title">Song Title</div>
-  <div class="progress-container">
-    <span id="currentTime">0:00</span>
-    <input type="range" id="progress" value="0" min="0" max="100">
-    <span id="duration">0:00</span>
-  </div>
+<button class="song-list-btn" onclick="toggleSongList()">♫</button>
+
+
+<div class="song-list" id="songList">
+  <ul>
+    <li onclick="playSelectedSong(0)">Bad Habits</li>
+    <li onclick="playSelectedSong(1)">Devil in a New Dress</li>
+    <li onclick="playSelectedSong(2)">Die with a Smile</li>
+    <li onclick="playSelectedSong(3)">The Night We Met</li>
+  </ul>
 </div>
 
 <script src="javascript.js"></script>

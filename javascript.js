@@ -14,6 +14,8 @@ const durationEl = document.getElementById('duration');
 
 function loadSong(index) {
   const song = songs[index];
+  const spans = title.querySelectorAll('span');
+  spans.forEach(span => span.textContent = song.title);
   title.textContent = song.title;
   audio.src = song.src;
 }
@@ -54,3 +56,38 @@ progress.addEventListener('input', () => {
 
 // Initial Load
 loadSong(currentSongIndex);
+
+function updateProgressSmooth() {
+  if (!audio.paused) {
+    progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+    durationEl.textContent = formatTime(audio.duration);
+  }
+  requestAnimationFrame(updateProgressSmooth);
+}
+
+requestAnimationFrame(updateProgressSmooth);
+
+function toggleSongList() {
+  const list = document.getElementById("songList");
+  list.style.display = list.style.display === "block" ? "none" : "block";
+}
+
+function playSelectedSong(index) {
+  currentSongIndex = index;
+  loadSong(currentSongIndex);
+  audio.play();
+  toggleSongList(); // close list after selecting
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault(); // prevent page scrolling
+    togglePlayPause();
+  } else if (e.code === "ArrowRight") {
+    changeSong(1);
+  } else if (e.code === "ArrowLeft") {
+    changeSong(-1);
+  }
+});
+
