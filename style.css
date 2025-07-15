@@ -1,13 +1,38 @@
-*{
-    margin :0;
-    padding:0;
-    box-sizing:border-box;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
- 
+
 .background {
-  /* max-width: 100%; */
   overflow: hidden;
-  position: fixed; 
+  position: fixed;
   margin: -150px;
-}  
+}
+
+.hidden-audio {
+  display: none;
+}
+
+.music-info {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: sans-serif;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.progress-container input {
+  width: 200px;
+}
