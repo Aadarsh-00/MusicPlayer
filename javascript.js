@@ -1,8 +1,9 @@
 const songs = [
-  { title: "Bad Habits", src: "/music/bad habits.mp3" },
-  { title: "Devil in a new dress", src: "/music/devil in a new dress.mp3" },
-  { title: "Die with a smile", src: "/music/die with a smile.mp3" },
-  {title: "The night we met", src: "/music/the night we met.mp3" },
+  { title: "Bad Habits", src: "./music/bad habits.mp3" },
+  { title: "Devil in a new dress", src: "./music/devil in a new dress.mp3" },
+  { title: "Die with a smile", src: "./music/die with a smile.mp3" },
+  {title: "The night we met", src: "./music/the night we met.mp3" },
+  {title: "Khamaaj", src: "./music/Khamaaj.mp3" },
 ];
 
 let currentSongIndex = 0;
