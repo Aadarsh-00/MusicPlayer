@@ -92,3 +92,79 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+
+const radioImg = document.querySelector(".background");
+
+function togglePlayPause() {
+  if (audio.paused) {
+    audio.play();
+    radioImg.src = "./img/final_radio1.png";
+  } else {
+    audio.pause();
+    radioImg.src = "./img/final_radio.png";
+  }
+}
+
+
+const volumeKnob = document.getElementById("volumeKnob");
+let isDragging = false;
+let currentRotation = 0;
+
+volumeKnob.addEventListener("mousedown", () => isDragging = true);
+document.addEventListener("mouseup", () => isDragging = false);
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  // Calculate rotation based on mouse X movement
+  currentRotation += e.movementX * 0.5; // sensitivity
+  currentRotation = Math.max(-100, Math.min(100, currentRotation)); // limit rotation
+
+  // Apply rotation to knob
+  volumeKnob.style.transform = `rotate(${currentRotation}deg)`;
+
+  // Map rotation (-100 to 100) to volume (0 to 1)
+  const volume = (currentRotation + 100) / 200;
+  audio.volume = volume;
+});
+document.addEventListener('keydown', (event) => {
+  const step = 0.05; // volume change step
+
+  if (event.key === 'ArrowUp') {
+    // Increase volume
+    audio.volume = Math.min(1, audio.volume + step);
+    updateVolumeKnob(audio.volume);
+    event.preventDefault(); // prevent page scroll
+  } else if (event.key === 'ArrowDown') {
+    // Decrease volume
+    audio.volume = Math.max(0, audio.volume - step);
+    updateVolumeKnob(audio.volume);
+    event.preventDefault(); // prevent page scroll
+  }
+});
+
+// Helper function to update knob rotation based on volume (0 to 1)
+function updateVolumeKnob(volume) {
+  // Map volume (0 to 1) to rotation (-100deg to 100deg)
+  const rotation = (volume * 200) - 100;
+  volumeKnob.style.transform = `rotate(${rotation}deg)`;
+  
+  // Update currentRotation to sync drag and keyboard controls
+  currentRotation = rotation;
+}
+const volumeLevel = document.getElementById("volumeLevel");
+
+function updateVolumeUI(volume) {
+  // Update knob rotation (already done before)
+  const rotation = (volume * 200) - 100;
+  volumeKnob.style.transform = `rotate(${rotation}deg)`;
+  currentRotation = rotation;
+
+  // Update vertical bar height
+  volumeLevel.style.height = `${volume * 100}%`;
+}
+
+// Update this wherever volume changes:
+audio.addEventListener("volumechange", () => {
+  updateVolumeUI(audio.volume);
+});

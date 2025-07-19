@@ -3,6 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Prevent text/image selection on the radio and buttons */
+.radio,
+.radio img,
+.area,
+.volume-knob,
+.music-info,
+.progress-container {
+  user-select: none;         /* Standard */
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+}
+
 
 .background {
   /* width: 100%; */
@@ -55,6 +68,11 @@
   /* overflow: hidden; */
   white-space: nowrap;
   transform: rotate(1deg);
+
+    text-shadow: 
+    1px 1px 0 #c2742e,
+    2px 2px 0 #a55e24,
+    3px 3px 0 #7a4319;
 }
 
 #title{
@@ -73,8 +91,7 @@
 
 /* #title span {
   padding-right: 50px;
-  white-space: nowrap; /* space between titles */
-} */
+  white-space: nowrap; /* space between titles */ */
 /* @keyframes scroll-loop {
   0% {
     transform: translateX(0);
@@ -132,7 +149,13 @@ area {
   white-space: nowrap;
   transform: rotate(1deg);
   /* margin-top: px; */
+
+     text-shadow: 
+    1px 1px 0 #c2742e,
+    /* 2px 2px 0 #a55e24, */
+    3px 3px 0 #7a4319;
 }
+
 
 .progress-container{
   position: fixed;
@@ -253,4 +276,60 @@ area {
 
 .song-list li:hover {
   color: #fff8dc;
+}
+
+.volume-knob {
+  position: absolute;
+  top: 370px;          /* Adjust based on your radio image */
+  left: 380px;         /* Adjust based on knob placement */
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #e69040 30%, #a55e24 90%);
+  border-radius: 50%;
+  border: 3px solid #7a4319;
+  box-shadow: inset -3px -3px 6px rgba(255,255,255,0.3),
+              inset 3px 3px 6px rgba(0,0,0,0.5),
+              0 0 4px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: transform 0.1s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.knob-indicator {
+  width: 4px;
+  height: 20px;
+  background: #fff;  /* white indicator */
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;          /* positions indicator toward the top */
+}
+
+.volume-bar {
+  position: absolute;
+  top: 407px;       /* Adjust to match your knob placement */
+  left: 510px;      /* Place it beside the knob */
+  width: 10px;
+  height: 80px;
+  /* border-left: 2px dashed #e69040; dashed vertical line */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.volume-level {
+  width: 6px;
+  background: #e69040;
+  height: 0%; /* will grow dynamically */
+  transition: height 0.2s linear;
+  border-radius: 3px;
+  
+  /* Vintage shadow like your duration-info */
+  box-shadow: 
+    1px 1px 0 #c2742e,
+    2px 2px 0 #a55e24,
+    3px 3px 0 #7a4319;
 }
