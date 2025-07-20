@@ -4,6 +4,8 @@ const songs = [
   { title: "Die with a smile", src: "./music/die with a smile.mp3" },
   {title: "The night we met", src: "./music/the night we met.mp3" },
   {title: "Khamaaj", src: "./music/Khamaaj.mp3" },
+  {title: "Pick up da call", src: "./music/SANJAY JI PLEASE PICKUP THE PHONE NAME RINGTONESANJAY RINGTONEAAP KO KISI NE DIL SE YAD KIYA HAI.mp3" },
+  {title: "Passionfruit", src: "./music/Passionfruit.mp3" },
 ];
 
 let currentSongIndex = 0;

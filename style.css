@@ -17,6 +17,8 @@
 }
 
 
+
+
 .background {
   /* width: 100%; */
   /* height: auto; */
@@ -238,6 +240,13 @@ area {
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.3s ease;
+}
+
+#playlist{
+  width: 24px;
+  height: 24px;
+  vertical-align: middle; /* Aligns the icon vertically */
+  color: orange;
 }
 
 .song-list-btn:hover {
